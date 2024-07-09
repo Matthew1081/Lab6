@@ -1,13 +1,6 @@
-import sys
-import json
-
-def load_json(file_path):
-    try:
-        with open(file_path, 'r') as f:
-            return json.load(f)
-    except json.JSONDecodeError:
-        print("Invalid JSON format")
-        return None
+def save_json(data, file_path):
+    with open(file_path, 'w') as f:
+        json.dump(data, f, indent=4)
 
 def main():
     if len(sys.argv) != 3:
@@ -21,7 +14,8 @@ def main():
     if data is None:
         return
 
-    print(f"Successfully loaded {input_file}")
+    save_json(data, output_file)
+    print(f"Successfully converted {input_file} to {output_file}")
 
 if __name__ == "__main__":
     main()
